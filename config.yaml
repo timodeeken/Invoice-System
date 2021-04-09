@@ -1,14 +1,14 @@
 database:
   user: connect
-  password: f0zbdgocpwnujtmhUk/rasixy
+  password: password
   database: invoicesystem
-  host: 188.64.60.37
+  host: 127.0.0.1
 website:
   view: App/Views
   routes: Routes
   controller: App/Controllers
   https: true
 security:
-  salt: MFS@14612
+  salt: test
   public:
   private:
