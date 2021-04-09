@@ -1,0 +1,32 @@
+{% extends "index.twig" %} {% block title %} Admin Linkverwaltung {% endblock %} {% block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    <div class="col">
+        <table class="table table-striped" id="hersteller">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Linkname</td>
+                    <td>Link</td>
+                    <td>Icon</td>
+                    <td>Status</td>
+                    <td>Aktion</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-md-2">
+        <a href="/admin/link/add" class="btn btn-success">Hinzufügen</a>
+    </div>
+</div>
+{% endblock %} {% block fScripts %}
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    let table1 = document.querySelector('#hersteller');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

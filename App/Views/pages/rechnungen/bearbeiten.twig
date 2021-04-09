@@ -1,0 +1,383 @@
+{% extends "index.twig" %} {% block title %} Rechnung erstellen {% endblock %} {% block content %}
+<div class="row mb-1">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Kundendaten <span class="float-right text-success" style="font-size: 9px;" id="UpdateCustomerText"></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <input type="hidden" id="uuid" value="{{ uuid }}">
+                <input type="hidden" id="art" value="{{ art }}">
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <label for="anrede">Anrede</label>
+                        <select class="form-select" id="anrede">
+                            <option value="0" {% if kunde.anrede==0 %}selected{% endif %}>Herr</option>
+                            <option value="1" {% if kunde.anrede==1 %}selected{% endif %}>Frau</option>
+                            <option value="2" {% if kunde.anrede==2 %}selected{% endif %}>Firma</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="kundenname">Kundenname / Firmenname</label>
+                        <input type="text" class="form-control" id="kundenname" placeholder="Kundenname" value="{{ kunde.name }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="strasse">Straße</label>
+                        <input type="text" class="form-control" id="strasse" placeholder="Straße" value="{{ kunde.adresse }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="hausnummer">Nr.</label>
+                        <input type="text" class="form-control" id="hausnummer" placeholder="Nr" value="{{ kunde.hausnummer }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="land">Land</label>
+                        <input type="text" class="form-control" id="land" placeholder="Land" value="{{ kunde.land }}">
+                    </div>
+                    <div class="col">
+                        <label for="plz">PLZ</label>
+                        <input type="text" class="form-control" id="plz" placeholder="Postleitzahl" value="{{ kunde.plz }}">
+                    </div>
+                    <div class="col">
+                        <label for="ort">Ort</label>
+                        <input type="text" class="form-control" id="ort" placeholder="Ort" value="{{ kunde.ort }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if art == 1 %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Fahrzeugdaten <span class="float-right text-success" style="font-size: 9px;" id="UpdateVehicelText"></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="fzArt">Fahrzeugart</label>
+                        <input type="text" class="form-control" id="fzArt" placeholder="Fahrzeugart" value="{{ details.fzArt }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="fzID">Fahrgestellnummer</label>
+                        <input type="text" class="form-control" id="fzID" placeholder="Fahrgestellnummer" value="{{ details.fzID }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="kennzeichen">Kennzeichen</label>
+                        <input type="text" class="form-control" id="kennzeichen" placeholder="Kennzeichen" value="{{ details.kennzeichen }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="kmStand">KM Stand</label>
+                        <input type="text" class="form-control" id="kmStand" placeholder="KM Stand" value="{{ details.km_stand }}">
+                    </div>
+                    <div class="col">
+                        <label for="mappe">Mappe Nr.</label>
+                        <input type="text" class="form-control" id="mappe" placeholder="Mappen Nr." value="{{ details.mappe }}">
+                    </div>
+                    <div class="col">
+                        <label for="ticket">Ticket Nr.</label>
+                        <input type="text" class="form-control" id="ticket" placeholder="Ticket Nr." value="{{ details.ticket_id }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Rechnungsdaten
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="rechnungsdatum">Rechnungsdatum</label>
+                        <input type="date" class="form-control" id="rechnungsdatum" value="{{ dates.rechnungsdatum }}" disabled>
+                    </div>
+                    <div class="col">
+                        <label for="leistungsdatum">Leistungsdatum</label>
+                        <input type="date" class="form-control" id="leistungsdatum" value="{{ dates.leistungsdatum }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="telefon">Telefonnummer</label>
+                        <input type="text" class="form-control" id="telefon" placeholder="Telefonnummer" value="{{ kunde.telefonnummer }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="telefon">E-Mail</label>
+                        <input type="text" class="form-control" id="email" placeholder="E-Mail" value="{{ kunde.email }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col border-right">
+        {% if art == 1 %}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Arbeit <span class="float-right text-success" style="font-size: 9px;" id="MessageArbeitsleistung"></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="arbeitsleistung">
+                            {% for arbeit in arbeitsleistungen %}
+                            <div class="row mb-3" id="positon-{{ arbeit.uuid }}">
+                                <div class="col">
+                                    <input type="text" class="form-control" id="name-{{ arbeit.uuid }}" placeholder="{{ arbeit.beschreibung }}" onfocusout="ChangeArName('{{ arbeit.uuid }}')" value="{{ arbeit.beschreibung }}">
+                                </div>
+                                {% if arbeit.art == 1 %}
+                                <div class="col-sm-2">
+                                    <input type="time" id="zeit-{{arbeit.uuid}}" class="form-control" placeholder="{{ arbeit.zeit }}" onfocusout="UpdateArPosition('{{ arbeit.uuid }}', 1, 1)" value="{{ arbeit.zeit }}">
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" onfocusout="UpdateArPosition('{{ arbeit.uuid }}', 3, 1)" id="wert-{{arbeit.uuid}}" aria-describedby="basic-addon2" placeholder="{{arbeit.wert}}" value="{{arbeit.wert}}">
+                                        <span class="input-group-text" id="basic-addon2">€</span>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-sm-2">
+                                    <div class="input-group">
+                                        <input type="text" id="stk-{{arbeit.uuid}}" class="form-control" aria-describedby="stk" onfocusout="UpdateArPosition('{{ arbeit.uuid }}', 2, 2)" placeholder="{{arbeit.stk}}" value="{{arbeit.stk}}">
+                                        <span class="input-group-text" id="stk">Stk.</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" onfocusout="UpdateArPosition('{{ arbeit.uuid }}', 3 , 2)" id="wert-{{arbeit.uuid}}" aria-describedby="basic-addon2" placeholder="{{arbeit.wert}}" value="{{arbeit.wert}}">
+                                        <span class="input-group-text" id="basic-addon2">€</span>
+                                    </div>
+                                </div>
+                                {% endif %} {% if arbeit.art == 1 %}
+                                <div class="col-sm-1 d-flex align-items-center align-content-center">
+                                    <span class="d-flex align-items-center align-content-center" id="gesamt-{{arbeit.uuid}}">{{ sumZeit(arbeit.zeit, arbeit.wert )}}
+                                        €</span>
+                                </div>
+                                {% else %}
+                                <div class="col-sm-1 d-flex align-items-center">
+                                    <span id="gesamt-{{arbeit.uuid}}">{{ sumStk(arbeit.stk, arbeit.wert )}}
+                                        €</span>
+                                </div>
+                                {% endif %}
+                                <div class="col-sm-1">
+                                    <button class="btn btn-danger" onclick="RemoveAr('{{ arbeit.uuid }}')"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row mb-1">
+                            <div class="col"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">
+                                Arbeitsleistung:
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <label id="gesamt"></label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">
+                                zzgl. 19% - MwSt.:
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <label id="gesamtMwstAr"></label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Produkte
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Produkt">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" placeholder="Menge">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" placeholder="Preis">
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <label for="" id="gesamt">15,00 €</label>
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">
+                                Produkte:
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <label for="" id="gesamt"><b>15,00 €</b></label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">
+                                {% if art == 1 %}zzgl.{% else %}inkl.{% endif %} 19% - MwSt.:
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <label id="gesamt"><b>2,85 €</b></label>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="SucheArbeitsleistung" class="mb-3">Arbeitsleistung</label>
+                                <input type="text" class="form-control" placeholder="Suche" id="SucheArbeitsleistung">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div id="AusgabeArbeitsleistung">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="SucheProdukte" class="mb-3">Produkte</label>
+                                <input type="text" class="form-control" placeholder="Suche" id="SucheProdukte">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div id="AusgabeProdukte">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="SucheEAN" class="mb-3">EAN</label>
+                                <input type="text" class="form-control" placeholder="Suche" id="SucheEAN">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div id="AusgabeEAN">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="SucheAuslagen" class="mb-3">Auslagen</label>
+                                <input type="text" class="form-control" placeholder="Suche" id="SucheAuslagen">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div id="AusgabeAuslagen">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="SucheHinweis" class="mb-3">Hinweis</label>
+                                <input type="text" class="form-control" placeholder="Suche" id="SucheHinweis">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div id="AusgabeHinweis">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row fixed-buttons">
+    <div class="col-md-2">
+        <button class="btn btn-secondary">Rechnung Erstellen</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-info">Vorschau</button>
+    </div>
+</div>
+{% endblock %} {% block fScripts %}
+<script src="/assets/js/system/rechnung.js"></script>
+{% endblock %}

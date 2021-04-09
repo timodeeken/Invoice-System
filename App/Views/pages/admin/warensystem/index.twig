@@ -1,0 +1,29 @@
+{% extends "index.twig" %} {% block title %} Admin Warensystem {% endblock %} {% block content %} {% include
+"extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    <div class="col-md-4">
+        <a href="/admin/warensystem/add" class="btn btn-secondary">Neues Produkt anlegen</a>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-md-5">
+        <div class="card card-body">
+            <form action="/admin/warensystem" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fileToUpload" class="form-label card-title">Liqui Moly Bestellliste</label>
+                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+                </div>
+                <button type="submit" class="btn btn-secondary">Import</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <pre>
+            {{ dump(post) }}
+        </pre>
+    </div>
+</div>
+{% endblock %}

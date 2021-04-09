@@ -1,0 +1,118 @@
+{% extends "index.twig" %} {% block title %} Admin Startseite {% endblock %} {%
+block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+  <div class="col">
+    {{ dump(post) }}
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Statistikverwaltung</div>
+        <hr />
+        <div class="row">
+          <div class="col-md-4">
+            <form action="/admin/stats/add" method="post">
+              <div class="row">
+                <div class="col">
+                  <label for="StateDate">Datum</label>
+                  <input
+                    type="date"
+                    name="StateDate"
+                    id="StateDate"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col">
+                  <label for="StateTime">Zeit</label>
+                  <input
+                    type="time"
+                    name="StateTime"
+                    id="StateTime"
+                    class="form-control"
+                    value="00:00"
+                  />
+                </div>
+                <div class="col-md-2 mt-4">
+                  <button class="btn btn-success">Speichern</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <hr />
+        <table class="table mt-4" id="statistik">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tag</th>
+              <th>Zeit</th>
+              <th>Rechnungszeit</th>
+              <th>MotorFunSports</th>
+              <th>FZ Aufbau</th>
+              <th>Garanite</th>
+              <th>Aktion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for stat in stats %}
+            <tr>
+              <td>{{ stat.id }}</td>
+              <td>{{ stat.date|date('d. M. Y') }}</td>
+              <td>{{ stat.time }}</td>
+              <td>{{ stat.invoice_time }}</td>
+              <td>
+                <input
+                  id="mfs-{{ stat.uuid }}"
+                  onfocusout="ChangeTime('{{ stat.uuid }}', 2)"
+                  class="form-control form-control-sm"
+                  value="{{ stat.mfs_time }}"
+                  placeholder="{{ stat.mfs_time }}"
+                  type="time"
+                />
+              </td>
+              <td>
+                <input
+                  class="form-control form-control-sm"
+                  id="aufbau-{{ stat.uuid }}"
+                  onfocusout="ChangeTime('{{ stat.uuid }}', 3)"
+                  value="{{ stat.aufbau_time }}"
+                  placeholder="{{ stat.aufbau_time }}"
+                  type="time"
+                />
+              </td>
+              <td>
+                <input
+                  class="form-control form-control-sm"
+                  id="garantie-{{ stat.uuid }}"
+                  onfocusout="ChangeTime('{{ stat.uuid }}', 1)"
+                  value="{{ stat.garantie_time }}"
+                  placeholder="{{ stat.garantie_time }}"
+                  type="time"
+                />
+              </td>
+              <td>
+                <button disabled class="btn btn-sm btn-success">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button disabled class="btn btn-sm btn-danger">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block fScripts %}
+<script src="/assets/js/system/admin.js"></script>
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+  let table1 = document.querySelector("#statistik");
+  let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

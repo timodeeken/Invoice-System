@@ -1,0 +1,62 @@
+{% extends "index.twig" %} {% block title %} Admin Nutzer Verwaltung -{% endblock %} {% block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    <form action="/admin/user/add" method="post">
+        <div class="col-md-5">
+            <div class="card card-body">
+                <div class="card-title">
+                    Nutzer anlegen
+                </div>
+                <hr>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="FullName">Name:</label>
+                        <input type="text" class="form-control" placeholder="" name="FullName" id="FullName" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="email">E-Mail:</label>
+                        <input type="email" class="form-control" placeholder="" name="email" id="email" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="Username">Nutzername:</label>
+                        <input type="text" class="form-control" placeholder="" name="Username" id="Username" value="">
+                    </div>
+                    <div class="col">
+                        <label for="FullName">Password:</label>
+                        <input type="password" class="form-control" placeholder="" name="Password" id="Password" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="personal_id">Personalnummer:</label>
+                        <input type="text" class="form-control" placeholder="" name="personal_id" id="personal_id" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="active">Aktiv: 0 - Nicht Aktiv, 1 - Aktiv</label>
+                        <input type="text" class="form-control" placeholder="" name="active" id="active" value="">
+                    </div>
+                    <div class="col">
+                        <label for="position">Position:</label>
+                        <input type="text" class="form-control" placeholder="" name="position" id="position" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md3">
+                        <button type="submit" class="btn btn-success">Anlegen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <pre>
+        {{ dump(post) }}
+    </pre>
+
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "index.twig" %}
+
+{% block title %}
+Hersteller
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <table class="table" id="hersteller">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Datum</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hersteller in herstellerlist %}
+                <tr>
+                    <td>{{ hersteller.nummer }}</td>
+                    <td>{{ hersteller.name }}</td>
+                    <td>{{ hersteller.timetamp|date('d. M Y') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mb-4">
+
+
+</div>
+{% endblock %}
+
+{% block fScripts %}
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    let table1 = document.querySelector('#hersteller');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

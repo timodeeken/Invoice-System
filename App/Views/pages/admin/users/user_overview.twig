@@ -1,0 +1,25 @@
+{% extends "index.twig" %} {% block title %} Admin Nutzer Verwaltung {% endblock %} {% block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    {% for user in users %}
+    <div class="col-md-3">
+        <div class="card card-body text-center">
+            <div class="card-title">
+                {{ user.name }}
+            </div>
+            <p>{{ user.position }}</p>
+            <a class="btn btn-danger btn-sm" href="/admin/user/edit/{{ user.uuid }}">Bearbeiten</a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="col-md-3">
+        <div class="card card-body text-center justify-content-center align-content-center align-items-center">
+            <div class="card-title">
+                Neuen Mitarbeiter anlegen
+            </div>
+            <p><i class="fas fa-user-plus"></i></p>
+            <a class="btn btn-danger btn-sm" href="/admin/user/add">Anlegen</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

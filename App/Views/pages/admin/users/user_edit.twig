@@ -1,0 +1,61 @@
+{% extends "index.twig" %} {% block title %} Admin Nutzer Verwaltung - {{users[0].name}} {% endblock %} {% block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    <form action="/admin/user/edit/{{users[0].uuid}}" method="post">
+        <div class="col-md-5">
+            <div class="card card-body">
+                <div class="card-title">
+                    {{users[0].name}} - Bearbeiten
+                </div>
+                <hr>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="FullName">Name:</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].name}}" name="FullName" id="FullName" value="{{users[0].name}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="email">E-Mail:</label>
+                        <input type="email" class="form-control" placeholder="{{users[0].email}}" name="email" id="email" value="{{users[0].email}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="Username">Nutzername:</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].username}}" name="Username" id="Username" value="{{users[0].username}}">
+                    </div>
+                    <div class="col">
+                        <label for="FullName">Password:</label>
+                        <input type="password" class="form-control" placeholder="{{users[0].password}}" name="Password" id="Password" value="{{users[0].password}}" disabled>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="personal_id">Personalnummer:</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].personal_id}}" name="personal_id" id="personal_id" value="{{users[0].personal_id}}">
+                    </div>
+                    <div class="col">
+                        <label for="auth_level">auth_level:</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].auth_level}}" name="auth_level" id="auth_level" value="{{users[0].auth_level}}" disabled>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="active">Aktiv: 0 - Nicht Aktiv, 1 - Aktiv</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].active}}" name="active" id="active" value="{{users[0].active}}">
+                    </div>
+                    <div class="col">
+                        <label for="position">Position:</label>
+                        <input type="text" class="form-control" placeholder="{{users[0].position}}" name="position" id="position" value="{{users[0].position}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <pre>
+        {{ dump(users[0]) }}
+    </pre>
+
+</div>
+{% endblock %}

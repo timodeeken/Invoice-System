@@ -1,0 +1,46 @@
+{% extends "index.twig" %}
+
+{% block title %}
+Produkte
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <table class="table" id="products">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Bestellnummer</th>
+                    <th>Name</th>
+                    <th>VK1 Brutto</th>
+                    <th>EAN</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.bestellnr1 }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.vk1_brutto }}</td>
+                    <td>{{ product.EAN }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mb-4">
+
+
+</div>
+{% endblock %}
+
+{% block fScripts %}
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    let table1 = document.querySelector('#products');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

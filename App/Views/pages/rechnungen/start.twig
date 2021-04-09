@@ -1,0 +1,51 @@
+{% extends "index.twig" %}
+
+{% block title %}
+Rechnungen - Offen
+{% endblock %}
+
+{% block content %}
+{% include "extensions/rechnungenNav.twig" %}
+<div class="row mb-4">
+    <div class="col">
+        <table class="table table-light" id="table">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Kundenname</td>
+                    <td>Art</td>
+                    <td>Datum</td>
+                    <td>Bearbeiter</td>
+                    <td>Aktionen</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rechnung in rechnungen %}
+                <tr onclick="Redirect('{{ rechnung.uuid }}')" class="table-hover">
+                    <td><small style="font-size: 0.65em;">{{ rechnung.uuid }}</small></td>
+                    <td>{{ rechnung.name }}</td>
+                    <td><span class="badge bg-success" style="font-size: 0.8em;">{{ Rechnungsart(rechnung.art)
+                            }}</span></td>
+                    <td>{{ rechnung.rechnungsdatum|date('d. M Y') }}</td>
+                    <td>{{ rechnung.bearbeiter }}</td>
+                    <td><a href="/rechnungen/delete/{{ rechnung.uuid }}" class="btn btn-danger btn-sm"><i
+                                class="fas fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block fScripts %}
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    let table1 = document.querySelector('#table');
+    let dataTable = new simpleDatatables.DataTable(table1);
+
+    function Redirect(id) {
+        window.location = '/rechnungen/bearbeiten/' + id;
+    }
+</script>
+{% endblock %}

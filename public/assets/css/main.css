@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px;
+}
+
+.sidebar-wrapper {
+  background-color: #2f4050;
+  color: #ffffff;
+}
+
+.sidebar-wrapper .sidebar-header .page-title {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.sidebar-wrapper .menu .sidebar-title {
+  color: #ffffff;
+}
+
+.sidebar-wrapper .menu .sidebar-link {
+  font-size: 12px;
+}
+
+.sidebar-wrapper .menu .sidebar-link > span {
+  color: #ffffff;
+}
+
+.sidebar-wrapper .menu .sidebar-link > i {
+  color: #ffffff;
+}
+
+.sidebar-wrapper .menu .submenu li a {
+  color: #ffffff;
+}
+
+.toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #ffffff;
+}
+
+.toast.show {
+  z-index: 999999;
+}
+
+.toast[data-notification-type="0"] {
+  border-left: 2px solid #000;
+}
+
+.chat-content-height {
+  max-height: 500px;
+  min-height: 500px;
+  overflow-y: scroll;
+}
+
+.chat-footer {
+  font-size: 9px;
+  margin-top: .5rem;
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #00ffff;
+  -webkit-animation: load1 1s infinite ease-in-out;
+          animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+
+.loader {
+  color: #00ffff;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s;
+}
+
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+          animation-delay: -0.32s;
+}
+
+.loader:after {
+  left: 1.5em;
+}
+
+@-webkit-keyframes load1 {
+  0%, 80%, 100% {
+    -webkit-box-shadow: 0 0;
+            box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    -webkit-box-shadow: 0 -2em;
+            box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+
+@keyframes load1 {
+  0%, 80%, 100% {
+    -webkit-box-shadow: 0 0;
+            box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    -webkit-box-shadow: 0 -2em;
+            box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+i, svg.feather {
+  font-size: 17px;
+}
+
+i:hover, svg.feather:hover {
+  color: #cccccc;
+}
+
+.card .card-title {
+  font-size: .9rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card .card-title small {
+  font-size: 11px;
+}
+
+.home-card {
+  height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.card-text {
+  font-size: 15px;
+}
+
+.fullpage {
+  --bs-gutter-x: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.5rem;
+  font-size: 12px;
+}
+
+.table-hover {
+  cursor: pointer;
+}
+
+.table-hover:hover {
+  color: #cccccc;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+.fixed-buttons {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+}
+
+.sidebar-buttons {
+  position: fixed;
+  top: 10rem;
+  right: 2px;
+  z-index: 999999;
+}
+
+.sidebar-buttons .button-inner {
+  display: -ms-grid;
+  display: grid;
+}
+
+.sidebar-buttons .button-inner a {
+  margin-bottom: 5px;
+}
+
+.sidebar-buttons .button-inner a i {
+  font-size: 14px;
+}

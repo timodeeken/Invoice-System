@@ -1,0 +1,171 @@
+{% extends "index.twig" %} {% block title %} Startseite {% endblock %} {% block
+content %}
+<div class="header-pos"></div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">
+                  Rechnungen <small>Heute</small>
+                </h6>
+                <h6 class="font-extrabold mb-0">11,00 €</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">
+                  Teile <small>Heute</small>
+                </h6>
+                <h6 class="font-extrabold mb-0">112.000</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">
+                  Arbeitsleistung <small>Heute</small>
+                </h6>
+                <h6 class="font-extrabold mb-0">112.000</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">
+                  Kasse Bar <small>Heute</small>
+                </h6>
+                <h6 class="font-extrabold mb-0">112.000</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">
+                  Kasse EC <small>Heute</small>
+                </h6>
+                <h6 class="font-extrabold mb-0">112.000</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-body px-3 py-4-5">
+            <div class="row text-center">
+              <div class="col">
+                <h6 class="text-muted font-semibold">Offnen Rechnungen</h6>
+                <h6 class="font-extrabold mb-0">112.000</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-4 mt-4">
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Statistik <small>- 7 Tage Übersicht</small></div>
+      <div id="chart"></div>
+      {% for stat in statistik %} {% else %}
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Chatnachrichten <small>- Heute</small></div>
+      {% for message in messages %} {% else %}
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Aufgaben <small>- Heute</small></div>
+      {% for task in tasks %} {% else %}
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Rechnungsübersicht <small>- Heute</small></div>
+      {% for invoice in invoices %} {% else %}
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Überfällig <small>- Alle</small></div>
+      {% for faellig in ueberfaellig %} {% else %}
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col">
+    <div class="card card-body home-card">
+      <div class="card-title">Link Übersicht</div>
+      <div
+        class="box-content d-flex justify-content-center align-items-center h-100"
+      >
+        <div class="alert alert-danger text-center">Keine Daten</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block fScripts %}
+<script></script>
+{% endblock %}

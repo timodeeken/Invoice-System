@@ -1,0 +1,36 @@
+{% extends "index.twig" %} {% block title %} Admin Hersteller {% endblock %} {% block content %} {% include "extensions/AdminNav.twig" %}
+<div class="row mb-4">
+    <div class="col">
+        <table class="table table-striped" id="hersteller">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Datum</td>
+                    <td>Aktion</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hersteller in herstellerlist %}
+                <tr>
+                    <td>{{ hersteller.nummer }}</td>
+                    <td>{{ hersteller.name }}</td>
+                    <td>{{ hersteller.timetamp|date('d. M Y') }}</td>
+                    <td><a href="/admin/hersteller/edit/{{ hersteller.id }}">Bearbeiten</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mb-4">
+
+
+</div>
+{% endblock %} {% block fScripts %}
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    let table1 = document.querySelector('#hersteller');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

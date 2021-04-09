@@ -1,0 +1,194 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex" />
+    <meta name="AdsBot-Google" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+    <meta name="googlebot-news" content="nosnippet" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css"
+    />
+    <link
+      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <title>{% block title %}{% endblock %} | Workplace</title>
+  </head>
+
+  <body>
+    {% include "extensions/notification.twig" %} {% if IsUser %}
+    <div id="app">
+      <div id="sidebar" class="active">
+        <div class="sidebar-wrapper active">
+          <div class="sidebar-header">
+            <a class="page-title" href="/"> Workplace </a>
+          </div>
+          <div class="sidebar-menu">
+            <!-- Sidebar -->
+            {% include "extensions/sidebar.twig" %}
+          </div>
+          <button class="sidebar-toggler btn x">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+      </div>
+      <div id="main">
+        <nav class="navbar navbar-header navbar-expand navbar-light">
+          <!-- Navigation -->
+          {% include "extensions/navigation.twig" %}
+        </nav>
+
+        <div class="main-content container-fluid">
+          <section class="section">{% block content %}{% endblock %}</section>
+          <div
+            class="modal fade"
+            id="RechnungErstellen"
+            tabindex="-1"
+            aria-labelledby="RechnungErstellenTitle"
+            style="display: none"
+            aria-hidden="true"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="RechnungErstellenTitle">
+                    Rechnung erstellen
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="/api/rechnungen/erstellen" method="post">
+                  <div class="modal-body">
+                    <fieldset class="form-group">
+                      <select class="form-select" name="rechnungsart">
+                        <option value="1">Werkstatt Rechnung</option>
+                        <option value="2">Teile Rechnung</option>
+                        <option value="3">Angebot</option>
+                        <option value="4">Storno Rechnung</option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                      Erstellen
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-buttons">
+      <div class="button-inner">
+        <a href="#" class="btn icon btn-primary"
+          ><i class="fas fa-users"></i
+        ></a>
+        <a href="#" class="btn icon btn-primary"
+          ><i class="fas fa-coffee"></i
+        ></a>
+      </div>
+    </div>
+    {% else %}
+    <div id="auth">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-12 mx-auto">
+            <div class="card pt-4">
+              <div class="card-body">
+                <div class="text-center mb-5">
+                  <h3>Workplace v2</h3>
+                  <p>
+                    Bitte melde ich an um die Funktionen des Workplaces zu
+                    nutzen
+                  </p>
+                </div>
+                <form action="/" method="POST">
+                  <div class="form-group position-relative has-icon-left">
+                    <label for="username">Nutzername</label>
+                    <div class="position-relative">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                      />
+                      <div class="form-control-icon">
+                        <i class="fas fa-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group position-relative has-icon-left">
+                    <div class="clearfix">
+                      <label for="password">Passwort</label>
+                    </div>
+                    <div class="position-relative">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                      />
+                      <div class="form-control-icon">
+                        <i class="fas fa-key"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-check clearfix my-4">
+                    <div class="checkbox float-left">
+                      <input
+                        type="checkbox"
+                        id="checkbox1"
+                        class="form-check-input"
+                      />
+                      <label for="checkbox1">Angemeldet bleiben</label>
+                    </div>
+                  </div>
+                  <div class="clearfix">
+                    <button class="btn btn-primary float-right">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {% block fScripts %} {% endblock %} {{ reload | raw }}
+  </body>
+</html>
